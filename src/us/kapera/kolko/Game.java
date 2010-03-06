@@ -8,10 +8,5 @@ package us.kapera.kolko;
 public class Game {
   public static void main(String[] arg) {
     System.out.print("Hello");
-
-    Board dialog = new Board();
-    dialog.pack();
-    dialog.setVisible(true);
-    System.exit(0);
   }
 }
