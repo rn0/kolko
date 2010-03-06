@@ -9,6 +9,10 @@ import java.awt.*;
  * Time: 23:08:35
  */
 public class Board extends JFrame {
+
+  static Boolean state = false;
+  static int moves = 0;
+
   public Board() {
     setTitle("Kółko i krzyżyk");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -17,7 +21,7 @@ public class Board extends JFrame {
     pane.setLayout(new GridLayout(0,3));
     JButton buttons[] = new JButton[20];
     for(int i = 0; i <= 8; i++) {
-      pane.add(buttons[i] = new JButton("Button " + (i + 1)));
+      pane.add(buttons[i] = new FigureButton(""));
     }
     
     setSize(400, 400);
