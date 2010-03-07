@@ -22,11 +22,10 @@ public class FigureButton extends JButton implements ActionListener{
   }
 
   public void actionPerformed(ActionEvent e) {
+    System.out.println("click!");
+
     setText(Board.state ? "o" : "x");
     Board.state = !Board.state;
-    Board.moves++;
-
-    System.out.println("click! move no. " + Board.moves);
 
     setEnabled(false);
   }
