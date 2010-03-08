@@ -15,16 +15,18 @@ public class Board extends JFrame {
   static Boolean state = false;
   private JButton figures[][];
 
+  public static final int boardSize = 5;
+
   public Board() {
     setTitle("Kółko i krzyżyk");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     Container pane = getContentPane();
-    pane.setLayout(new GridLayout(0,5));
-    figures = new FigureButton[5][5];
+    pane.setLayout(new GridLayout(0, boardSize));
+    figures = new FigureButton[boardSize][boardSize];
     
-    for(int i = 0; i < figures.length; i++) {
-      for(int j = 0; j < figures[i].length; j++) {
+    for(int i = 0; i < boardSize; i++) {
+      for(int j = 0; j < boardSize; j++) {
         figures[i][j] = new FigureButton(i, j);
         figures[i][j].addPropertyChangeListener("text", new PropertyChangeListener() {
           public void propertyChange(PropertyChangeEvent e) {
@@ -44,8 +46,7 @@ public class Board extends JFrame {
     String state  = figures[x][y].getText();
     boolean row = true, column = true, slash = true, backslash = true;
 
-    int max = figures.length - 1;
-    for(int i = 0; i <= max; i++) {
+    for(int i = 0; i < boardSize; i++) {
       // wiersze
       if (row && !figures[x][i].getText().equals(state)) {
         row = false;
@@ -60,7 +61,7 @@ public class Board extends JFrame {
       if (slash && !figures[i][i].getText().equals(state)) {
         slash = false;
       }
-      if (backslash && !figures[i][max - i].getText().equals(state)) {
+      if (backslash && !figures[i][boardSize - i - 1].getText().equals(state)) {
         backslash = false;
       }
     }
