@@ -13,7 +13,7 @@ import java.beans.PropertyChangeListener;
 public class Board extends JFrame {
 
   static Boolean state = false;
-  private JButton figures[][];
+  private FigureButton figures[][];
 
   public static final int boardSize = 5;
 
@@ -28,7 +28,7 @@ public class Board extends JFrame {
     for(int i = 0; i < boardSize; i++) {
       for(int j = 0; j < boardSize; j++) {
         figures[i][j] = new FigureButton(i, j);
-        figures[i][j].addPropertyChangeListener("text", new PropertyChangeListener() {
+        figures[i][j].addPropertyChangeListener("move", new PropertyChangeListener() {
           public void propertyChange(PropertyChangeEvent e) {
             FigureButton source = (FigureButton)e.getSource();
             checkWinner(source.getPos_x(), source.getPos_y());
@@ -81,6 +81,18 @@ public class Board extends JFrame {
         mark = "backslash";
       }
       System.out.println("winner: " + state + " -> " + mark);
+      JOptionPane.showMessageDialog(null, "winner: " + state);
+      resetBoard();
+    }
+  }
+
+  private void resetBoard() {
+    state = false;
+    
+    for(int i = 0; i < boardSize; i++) {
+      for(int j = 0; j < boardSize; j++) {
+        figures[i][j].reset();
+      }
     }
   }
 }
