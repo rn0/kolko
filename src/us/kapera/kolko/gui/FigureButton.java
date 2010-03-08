@@ -12,8 +12,14 @@ import java.awt.event.ActionListener;
  * Time: 23:33:19
  */
 public class FigureButton extends JButton implements ActionListener{
-  public FigureButton(String text) {
-    super(text);
+  private int pos_x;
+  private int pos_y;
+
+  public FigureButton(int pos_x, int pos_y) {
+    super("");
+
+    setPos_x(pos_x);
+    setPos_y(pos_y);
 
     setBorder(new LineBorder(Color.BLACK, 1));
     setBackground(Color.WHITE);
@@ -22,11 +28,27 @@ public class FigureButton extends JButton implements ActionListener{
   }
 
   public void actionPerformed(ActionEvent e) {
-    System.out.println("click!");
+    System.out.printf("click! [%d, %d]\n", getPos_x(), getPos_y());
 
     setText(Board.state ? "o" : "x");
     Board.state = !Board.state;
 
     setEnabled(false);
+  }
+
+  public int getPos_x() {
+    return pos_x;
+  }
+
+  public void setPos_x(int pos_x) {
+    this.pos_x = pos_x;
+  }
+
+  public int getPos_y() {
+    return pos_y;
+  }
+
+  public void setPos_y(int pos_y) {
+    this.pos_y = pos_y;
   }
 }
