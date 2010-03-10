@@ -16,6 +16,7 @@ public class Board extends JFrame {
   private FigureButton figures[][];
 
   public static final int boardSize = 5;
+  private int moveNo = 0;
 
   public Board() {
     setTitle("Kółko i krzyżyk");
@@ -30,6 +31,8 @@ public class Board extends JFrame {
         figures[i][j] = new FigureButton(i, j);
         figures[i][j].addPropertyChangeListener("move", new PropertyChangeListener() {
           public void propertyChange(PropertyChangeEvent e) {
+            moveNo++;
+
             FigureButton source = (FigureButton)e.getSource();
             checkWinner(source.getPos_x(), source.getPos_y());
           }
@@ -84,10 +87,16 @@ public class Board extends JFrame {
       JOptionPane.showMessageDialog(null, "winner: " + state);
       resetBoard();
     }
+
+    if(moveNo == boardSize * boardSize) {
+      JOptionPane.showMessageDialog(null, "remis");
+      resetBoard();
+    }
   }
 
   private void resetBoard() {
     state = false;
+    moveNo = 0;
     
     for(int i = 0; i < boardSize; i++) {
       for(int j = 0; j < boardSize; j++) {
