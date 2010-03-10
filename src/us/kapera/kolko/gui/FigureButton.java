@@ -40,6 +40,11 @@ public class FigureButton extends JButton implements ActionListener{
   public void reset() {
     setText("");
     setEnabled(true);
+    setBackground(new Color(255, 255, 255));
+  }
+
+  public void mark() {
+    setBackground(new Color(0, 255, 0));
   }
 
   public int getPos_x() {

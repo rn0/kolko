@@ -69,21 +69,29 @@ public class Board extends JFrame {
       }
     }
 
+    // TODO: refactor
     if(row || column || slash || backslash) {
-      String mark = "";
       if(row) {
-        mark = "wiersz";
+        for(int i = 0; i < boardSize; i++) {
+          figures[x][i].mark();
+        }
       }
       if(column) {
-        mark = "kolumna";
+        for(int i = 0; i < boardSize; i++) {
+          figures[i][y].mark();
+        }
       }
       if(slash) {
-        mark = "slash";
+        for(int i = 0; i < boardSize; i++) {
+          figures[i][i].mark();
+        }
       }
       if(backslash) {
-        mark = "backslash";
+        for(int i = 0; i < boardSize; i++) {
+          figures[i][boardSize - i - 1].mark();
+        }
       }
-      System.out.println("winner: " + state + " -> " + mark);
+      System.out.println("winner: " + state);
       JOptionPane.showMessageDialog(null, "winner: " + state);
       resetBoard();
     }
